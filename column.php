@@ -28,6 +28,7 @@ add_filter( 'manage_users_sortable_columns', function( array $columns ): array {
 	return $columns;
 } );
 
+# TODO meta_value not exists
 add_action( 'pre_get_users', function( $query ) {
 	if ( ! current_user_can( 'list_users' ) )
 		return;

@@ -3,27 +3,39 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-18 17:45+0000\n"
+"POT-Creation-Date: 2017-01-18 21:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
 "Language: \n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Loco https://localise.biz/"
+"X-Generator: Loco - https://localise.biz/"
 
-#: /home/const/repositories/kgr-last-active/column.php:7
+#: home/const/repositories/kgr-last-active/column.php:7
 msgid "Active"
 msgstr ""
 
-#: /home/const/repositories/kgr-last-active/column.php:16
+#: home/const/repositories/kgr-last-active/column.php:16
 msgid "never"
 msgstr ""
 
-#: /home/const/repositories/kgr-last-active/column.php:17
+#: home/const/repositories/kgr-last-active/column.php:17
 msgid "ago"
+msgstr ""
+
+#: home/const/repositories/kgr-last-active/reset.php:9
+msgid "Reset users metadata?"
+msgstr ""
+
+#: home/const/repositories/kgr-last-active/reset.php:10
+msgid "Reset"
+msgstr ""
+
+#: home/const/repositories/kgr-last-active/reset.php:24
+msgid "Users metadata reset complete."
 msgstr ""
 
 #. Name of the plugin
