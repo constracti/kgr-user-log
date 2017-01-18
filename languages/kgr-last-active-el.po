@@ -1,0 +1,46 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: KGR Last Active\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-18 17:45+0000\n"
+"PO-Revision-Date: 2017-01-18 17:49+0000\n"
+"Last-Translator: constracti <constracti@gmail.com>\n"
+"Language-Team: Greek\n"
+"Language: el\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco - https://localise.biz/"
+
+#: home/const/repositories/kgr-last-active/column.php:7
+msgid "Active"
+msgstr "Ενεργός"
+
+#: home/const/repositories/kgr-last-active/column.php:16
+msgid "never"
+msgstr "ποτέ"
+
+#: home/const/repositories/kgr-last-active/column.php:17
+msgid "ago"
+msgstr "πριν"
+
+#. Name of the plugin
+msgid "KGR Last Active"
+msgstr "ΚΓΡ Τελευταία ενέργεια"
+
+#. Description of the plugin
+msgid ""
+"Adds a custom column to the users table with the time interval for which "
+"each user has been inactive."
+msgstr ""
+"Προσθέτει μία στήλη στον πίνακα χρηστών με το χρονικό διάστημα για το οποίο "
+"κάθε χρήστης είναι ανενεργός."
+
+#. URI of the plugin
+msgid "https://github.com/constracti/kgr-last-active"
+msgstr ""
+
+#. Author of the plugin
+msgid "constracti"
+msgstr ""
