@@ -22,3 +22,18 @@ add_action( 'admin_enqueue_scripts', function( string $hook ) {
 		return;
 	wp_enqueue_style( 'kgr-last-active-column', plugins_url( 'column.css', __FILE__ ) );
 } );
+
+add_filter( 'manage_users_sortable_columns', function( array $columns ): array {
+	$columns['kgr-last-active'] = 'kgr-last-active';
+	return $columns;
+} );
+
+add_action( 'pre_get_users', function( $query ) {
+	if ( ! current_user_can( 'list_users' ) )
+		return;
+	$orderby = $query->get( 'orderby' );
+	if ( $orderby !== 'kgr-last-active' )
+		return;
+	$query->set( 'meta_key', 'kgr-last-active' );
+	$query->set( 'orderby', 'meta_value_num' );
+} );

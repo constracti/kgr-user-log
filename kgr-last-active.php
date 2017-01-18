@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/constracti/kgr-last-active
  * Description: Adds a custom column to the users table with the time interval for which each user has been inactive.
  * Author: constracti
- * Version: 1.1
+ * Version: 1.2
  * License: GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: kgr-last-active
