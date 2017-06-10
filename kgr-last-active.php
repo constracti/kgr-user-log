@@ -2,7 +2,7 @@
 
 /*
  * Plugin Name: KGR Last Active
- * Plugin URI: https://github.com/constracti/kgr-last-active
+ * Plugin URI: https://github.com/constracti/wp-last-active
  * Description: Adds a custom column to the users table with the time interval for which each user has been inactive.
  * Author: constracti
  * Version: 1.3
