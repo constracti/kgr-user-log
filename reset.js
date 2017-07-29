@@ -1,18 +1,15 @@
-jQuery( function() {
+jQuery( document ).ready( function( $ ) {
 
-var busy = false;
-
-jQuery( '.kgr-last-active-reset' ).click( function() {
-	if ( busy )
+$( 'tr[data-slug="kgr-last-active"] span.reset>a' ).click( function() {
+	if ( $( this ).data( 'busy' ) === 'on' )
 		return false;
-	busy = true;
-	var link = jQuery( this );
-	if ( ! confirm( link.data( 'kgr-last-active-reset-confirm' ) ) )
+	if ( ! confirm( $( this ).data( 'confirm' ) ) )
 		return false;
-	jQuery.get( link.prop( 'href' ), function( data ) {
+	$( this ).data( 'busy', 'on' );
+	$.get( $( this ).prop( 'href' ), function( data ) {
 		if ( data !== '' )
 			alert( data );
-		busy = false;
+		$( this ).data( 'busy', 'off' );
 	} );
 	return false;
 } );
