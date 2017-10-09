@@ -1,3 +1,4 @@
-.fixed .column-kgr-last-active {
+.fixed .column-kgr-userlog-reg,
+.fixed .column-kgr-userlog-act {
 	width: 15%;
 }

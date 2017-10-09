@@ -1,0 +1,52 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: KGR User Log\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-09 13:48+0000\n"
+"PO-Revision-Date: 2017-10-09 13:49+0000\n"
+"Last-Translator: admin <constracti@gmail.com>\n"
+"Language-Team: Greek\n"
+"Language: el\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco - https://localise.biz/"
+
+#. Name of the plugin
+msgid "KGR User Log"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Adds two custom columns to the users table. The first column contains the "
+"registration time of each user. The second column displays the time interval "
+"for which each user has been inactive."
+msgstr ""
+"Προσθέτει δύο προσαρμοσμένες στήλες στον πίνακα χρηστών. Η πρώτη στήλη "
+"περιέχει το χρόνο εγγραφής κάθε χρήστη. Η δεύτερη στήλη εμφανίζει το χρονικό "
+"διάστημα για το οποίο ένας χρήστης έχει παραμείνει ανενεργός."
+
+#. URI of the plugin
+msgid "https://github.com/constracti/wp-userlog"
+msgstr ""
+
+#. Author of the plugin
+msgid "constracti"
+msgstr ""
+
+#: column.php:7
+msgid "Registration"
+msgstr "Εγγραφή"
+
+#: column.php:8
+msgid "Action"
+msgstr "Ενέργεια"
+
+#: column.php:22
+msgid "never"
+msgstr "ποτέ"
+
+#: column.php:23
+msgid "ago"
+msgstr "πριν"
