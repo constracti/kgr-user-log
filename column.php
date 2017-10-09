@@ -40,24 +40,17 @@ add_action( 'admin_enqueue_scripts', function( string $hook ) {
 } );
 
 add_filter( 'manage_users_sortable_columns', function( array $columns ): array {
-	$columns[ 'kgr-userlog-reg' ] = 'kgr-userlog-reg';
-	$columns[ 'kgr-userlog-act' ] = 'kgr-userlog-act';
+	foreach ( KGR_USERLOG_KEYS as $key )
+		$columns[ $key ] = $key;
 	return $columns;
 } );
 
-# TODO meta_value not exists
 add_action( 'pre_get_users', function( $query ) {
 	if ( ! current_user_can( 'list_users' ) )
 		return;
 	$orderby = $query->get( 'orderby' );
-	switch ( $orderby ) {
-		case 'kgr-userlog-reg':
-			$query->set( 'meta_key', 'kgr-userlog-reg' );
-			$query->set( 'orderby', 'meta_value_num' );
-			break;
-		case 'kgr-userlog-act':
-			$query->set( 'meta_key', 'kgr-userlog-act' );
-			$query->set( 'orderby', 'meta_value_num' );
-			break;
-	}
+	if ( !in_array( $orderby, KGR_USERLOG_KEYS ) )
+		return;
+	$query->set( 'meta_key', $orderby );
+	$query->set( 'orderby', 'meta_value_num' );
 } );
