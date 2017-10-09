@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/constracti/wp-userlog
  * Description: Adds two custom columns to the users table. The first column contains the registration time of each user. The second column displays the time interval for which each user has been inactive.
  * Author: constracti
- * Version: 1.4.0
+ * Version: 1.4.1
  * License: GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: kgr-userlog
@@ -22,7 +22,7 @@ define( 'KGR_USERLOG_KEY', 'kgr-userlog' );
 require_once KGR_USERLOG_DIR . 'column.php';
 
 add_action( 'plugins_loaded', function() {
-	load_plugin_textdomain( 'kgr-userlog', FALSE, KGR_USERLOG_DIR . 'languages' );
+	load_plugin_textdomain( 'kgr-userlog', FALSE, basename( dirname( __FILE__ ) ) . '/languages' );
 } );
 
 add_action( 'init', function() {
