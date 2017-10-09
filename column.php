@@ -23,7 +23,10 @@ add_action( 'manage_users_custom_column', function( string $output, string $colu
 			$meta = absint( get_user_meta( $user_id, 'kgr-userlog-act', TRUE ) );
 			if ( $meta === 0 )
 				return esc_html__( 'never', 'kgr-userlog' );
-			return sprintf( '%s %s', esc_html( human_time_diff( $meta ) ), esc_html__( 'ago', 'kgr-userlog' ) );
+			return sprintf( '%s %s',
+				esc_html( human_time_diff( $meta ), $_SERVER['REQUEST_TIME'] ),
+				esc_html__( 'ago', 'kgr-userlog' )
+			);
 		default:
 			return $output;
 	}

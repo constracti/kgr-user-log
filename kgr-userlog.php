@@ -29,9 +29,9 @@ add_action( 'init', function() {
 	$user_id = get_current_user_id();
 	if ( $user_id === 0 )
 		return;
-	update_user_meta( $user_id, 'kgr-userlog-act', time() );
+	update_user_meta( $user_id, 'kgr-userlog-act', $_SERVER['REQUEST_TIME'] );
 } );
 
 add_action( 'user_register', function( int $user_id ) {
-	update_user_meta( $user_id, 'kgr-userlog-reg', time() );
+	update_user_meta( $user_id, 'kgr-userlog-reg', $_SERVER['REQUEST_TIME'] );
 } );
