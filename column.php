@@ -15,7 +15,8 @@ add_action( 'manage_users_custom_column', function( string $output, string $colu
 			$meta = absint( get_user_meta( $user_id, 'kgr-userlog-reg', TRUE ) );
 			if ( $meta === 0 )
 				return '';
-			return sprintf( '%s %s',
+			$meta += get_option( 'gmt_offset' ) * HOUR_IN_SECONDS;
+			return sprintf( '%s<br />%s',
 				date_i18n( get_option( 'date_format' ), $meta ),
 				date_i18n( get_option( 'time_format' ), $meta )
 			);
