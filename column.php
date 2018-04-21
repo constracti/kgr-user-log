@@ -3,13 +3,23 @@
 if ( !defined( 'ABSPATH' ) )
 	exit;
 
-add_filter( 'manage_users_columns', function( array $columns ): array {
+/*
+ * @param $columns array
+ * @return array
+ */
+add_filter( 'manage_users_columns', function( $columns ) {
 	$columns[ 'kgr-userlog-reg' ] = esc_html__( 'Registration', 'kgr-userlog' );
 	$columns[ 'kgr-userlog-act' ] = esc_html__( 'Action', 'kgr-userlog' );
 	return $columns;
 } );
 
-add_action( 'manage_users_custom_column', function( string $output, string $column_name, int $user_id ): string {
+/*
+ * @param $output string
+ * @param $column_name string
+ * @param $user_id int
+ * @return string
+ */
+add_action( 'manage_users_custom_column', function( $output, $column_name, $user_id ) {
 	switch ( $column_name ) {
 		case 'kgr-userlog-reg':
 			$meta = absint( get_user_meta( $user_id, 'kgr-userlog-reg', TRUE ) );
@@ -33,23 +43,35 @@ add_action( 'manage_users_custom_column', function( string $output, string $colu
 	}
 }, 10, 3 );
 
-add_action( 'admin_enqueue_scripts', function( string $hook ) {
+/*
+ * @param $hook string
+ */
+add_action( 'admin_enqueue_scripts', function( $hook ) {
 	if ( $hook !== 'users.php' )
 		return;
 	wp_enqueue_style( 'kgr-userlog-column', KGR_USERLOG_URL . 'column.css', [], NULL );
 } );
 
-add_filter( 'manage_users_sortable_columns', function( array $columns ): array {
-	foreach ( KGR_USERLOG_KEYS as $key )
+/*
+ * @param $columns array
+ * @return array
+ */
+add_filter( 'manage_users_sortable_columns', function( $columns ) {
+	global $kgr_userlog_keys;
+	foreach ( $kgr_userlog_keys as $key )
 		$columns[ $key ] = $key;
 	return $columns;
 } );
 
+/*
+ * @param $query WP_Query
+ */
 add_action( 'pre_get_users', function( $query ) {
+	global $kgr_userlog_keys;
 	if ( ! current_user_can( 'list_users' ) )
 		return;
 	$orderby = $query->get( 'orderby' );
-	if ( !in_array( $orderby, KGR_USERLOG_KEYS ) )
+	if ( !in_array( $orderby, $kgr_userlog_keys ) )
 		return;
 	$query->set( 'meta_key', $orderby );
 	$query->set( 'orderby', 'meta_value_num' );

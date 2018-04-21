@@ -18,10 +18,11 @@ if ( !defined( 'ABSPATH' ) )
 define( 'KGR_USERLOG_DIR', plugin_dir_path( __FILE__ ) );
 define( 'KGR_USERLOG_URL', plugin_dir_url( __FILE__ ) );
 define( 'KGR_USERLOG_KEY', 'kgr-userlog' );
-define( 'KGR_USERLOG_KEYS', [
+
+$kgr_userlog_keys = [
 	'kgr-userlog-reg',
 	'kgr-userlog-act',
-] );
+];
 
 require_once KGR_USERLOG_DIR . 'column.php';
 
@@ -30,7 +31,8 @@ add_action( 'plugins_loaded', function() {
 } );
 
 register_activation_hook( __FILE__, function() {
-	foreach ( KGR_USERLOG_KEYS as $key ) {
+	global $kgr_userlog_keys;
+	foreach ( $kgr_userlog_keys as $key ) {
 		$users = get_users( [
 			'meta_key' => $key,
 			'meta_compare' => 'NOT EXISTS',
