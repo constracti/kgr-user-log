@@ -59,7 +59,7 @@ add_action( 'admin_enqueue_scripts', function( $hook ) {
 add_filter( 'manage_users_sortable_columns', function( $columns ) {
 	global $kgr_userlog_keys;
 	foreach ( $kgr_userlog_keys as $key )
-		$columns[ $key ] = $key;
+		$columns[ $key ] = [ $key, TRUE ];
 	return $columns;
 } );
 
