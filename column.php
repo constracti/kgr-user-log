@@ -8,8 +8,8 @@ if ( !defined( 'ABSPATH' ) )
  * @return array
  */
 add_filter( 'manage_users_columns', function( $columns ) {
-	$columns[ 'kgr-userlog-reg' ] = esc_html__( 'Registration', 'kgr-userlog' );
-	$columns[ 'kgr-userlog-act' ] = esc_html__( 'Action', 'kgr-userlog' );
+	$columns['kgr-userlog-reg'] = esc_html__( 'Registration', 'kgr-userlog' );
+	$columns['kgr-userlog-act'] = esc_html__( 'Action', 'kgr-userlog' );
 	return $columns;
 } );
 
@@ -22,11 +22,10 @@ add_filter( 'manage_users_columns', function( $columns ) {
 add_action( 'manage_users_custom_column', function( $output, $column_name, $user_id ) {
 	switch ( $column_name ) {
 		case 'kgr-userlog-reg':
-			$meta = absint( get_user_meta( $user_id, 'kgr-userlog-reg', TRUE ) );
-			if ( $meta === 0 )
-				return '';
+			$user = get_userdata( $user_id );
+			$meta = strtotime( $user->user_registered );
 			$meta += get_option( 'gmt_offset' ) * HOUR_IN_SECONDS;
-			return sprintf( '%s<br />%s',
+			return sprintf( '%s %s',
 				date_i18n( get_option( 'date_format' ), $meta ),
 				date_i18n( get_option( 'time_format' ), $meta )
 			);
@@ -57,9 +56,8 @@ add_action( 'admin_enqueue_scripts', function( $hook ) {
  * @return array
  */
 add_filter( 'manage_users_sortable_columns', function( $columns ) {
-	global $kgr_userlog_keys;
-	foreach ( $kgr_userlog_keys as $key )
-		$columns[ $key ] = [ $key, TRUE ];
+	$columns['kgr-userlog-reg'] = [ 'kgr-userlog-reg', TRUE ];
+	$columns['kgr-userlog-act'] = [ 'kgr-userlog-act', TRUE ];
 	return $columns;
 } );
 
@@ -67,12 +65,16 @@ add_filter( 'manage_users_sortable_columns', function( $columns ) {
  * @param $query WP_Query
  */
 add_action( 'pre_get_users', function( $query ) {
-	global $kgr_userlog_keys;
 	if ( ! current_user_can( 'list_users' ) )
 		return;
 	$orderby = $query->get( 'orderby' );
-	if ( !in_array( $orderby, $kgr_userlog_keys ) )
-		return;
-	$query->set( 'meta_key', $orderby );
-	$query->set( 'orderby', 'meta_value_num' );
+	switch ( $orderby ) {
+		case 'kgr-userlog-reg':
+			$query->set( 'orderby', 'user_registered' );
+			break;
+		case 'kgr-userlog-act':
+			$query->set( 'meta_key', 'kgr-userlog-act' );
+			$query->set( 'orderby', 'meta_value_num' );
+			break;
+	}
 } );

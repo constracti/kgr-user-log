@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/constracti/wp-userlog
  * Description: Adds two custom columns to the users table. The first column contains the registration time of each user. The second column displays the time interval for which each user has been inactive.
  * Author: constracti
- * Version: 1.4.5
+ * Version: 1.5
  * License: GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: kgr-userlog
@@ -19,11 +19,6 @@ define( 'KGR_USERLOG_DIR', plugin_dir_path( __FILE__ ) );
 define( 'KGR_USERLOG_URL', plugin_dir_url( __FILE__ ) );
 define( 'KGR_USERLOG_KEY', 'kgr-userlog' );
 
-$kgr_userlog_keys = [
-	'kgr-userlog-reg',
-	'kgr-userlog-act',
-];
-
 require_once KGR_USERLOG_DIR . 'column.php';
 
 add_action( 'plugins_loaded', function() {
@@ -31,16 +26,13 @@ add_action( 'plugins_loaded', function() {
 } );
 
 register_activation_hook( __FILE__, function() {
-	global $kgr_userlog_keys;
-	foreach ( $kgr_userlog_keys as $key ) {
-		$users = get_users( [
-			'meta_key' => $key,
-			'meta_compare' => 'NOT EXISTS',
-			'fields' => 'id',
-		] );
-		foreach ( $users as $user_id )
-			update_user_meta( $user_id, $key, 0 );
-	}
+	$users = get_users( [
+		'meta_key' => 'kgr-userlog-act',
+		'meta_compare' => 'NOT EXISTS',
+		'fields' => 'id',
+	] );
+	foreach ( $users as $user_id )
+		update_user_meta( $user_id, 'kgr-userlog-act', 0 );
 } );
 
 add_action( 'init', function() {
@@ -51,6 +43,5 @@ add_action( 'init', function() {
 } );
 
 add_action( 'user_register', function( int $user_id ) {
-	update_user_meta( $user_id, 'kgr-userlog-reg', $_SERVER['REQUEST_TIME'] );
 	update_user_meta( $user_id, 'kgr-userlog-act', 0 );
 } );
