@@ -2,50 +2,49 @@
 
 /*
  * Plugin Name: KGR User Log
- * Plugin URI: https://github.com/constracti/wp-userlog
- * Description: Adds two custom columns to the users table. The first column contains the registration time of each user. The second column displays the time interval for which each user has been inactive.
+ * Plugin URI: https://github.com/constracti/kgr-user-log
+ * Description: Displays the registration time and the last active time in two custom columns in the users table.
  * Author: constracti
- * Version: 1.6
+ * Version: 1.6.1
  * License: GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: kgr-userlog
+ * Text Domain: kgr-user-log
  */
 
 if ( !defined( 'ABSPATH' ) )
 	exit;
 
 // define plugin constants
-define( 'KGR_USERLOG_DIR', plugin_dir_path( __FILE__ ) );
-define( 'KGR_USERLOG_URL', plugin_dir_url( __FILE__ ) );
-define( 'KGR_USERLOG_KEY', 'kgr-userlog' );
+define( 'KGR_USER_LOG_DIR', plugin_dir_path( __FILE__ ) );
+define( 'KGR_USER_LOG_URL', plugin_dir_url( __FILE__ ) );
 
 // require php files
-$files = glob( KGR_USERLOG_DIR . '*.php' );
+$files = glob( KGR_USER_LOG_DIR . '*.php' );
 foreach ( $files as $file ) {
         if ( $file !== __FILE__ )
                 require_once( $file );
 }
 
 // return plugin version
-function kgr_userlog_version(): string {
+function kgr_user_log_version(): string {
         $plugin_data = get_plugin_data( __FILE__ );
         return $plugin_data['Version'];
 }
 
 // load plugin translations
 add_action( 'init', function(): void {
-        load_plugin_textdomain( 'kgr-userlog', FALSE, basename( __DIR__ ) . '/languages' );
+        load_plugin_textdomain( 'kgr-user-log', FALSE, basename( __DIR__ ) . '/languages' );
 } );
 
 // create meta upon plugin activation
 register_activation_hook( __FILE__, function(): void {
 	$users = get_users( [
-		'meta_key' => 'kgr-userlog-act',
+		'meta_key'     => 'kgr-user-log-act',
 		'meta_compare' => 'NOT EXISTS',
-		'fields' => 'id',
+		'fields'       => 'id',
 	] );
 	foreach ( $users as $user_id )
-		update_user_meta( $user_id, 'kgr-userlog-act', 0 );
+		update_user_meta( $user_id, 'kgr-user-log-act', 0 );
 } );
 
 // update meta upon user action
@@ -53,10 +52,10 @@ add_action( 'init', function(): void {
 	$user_id = get_current_user_id();
 	if ( $user_id === 0 )
 		return;
-	update_user_meta( $user_id, 'kgr-userlog-act', $_SERVER['REQUEST_TIME'] );
+	update_user_meta( $user_id, 'kgr-user-log-act', $_SERVER['REQUEST_TIME'] );
 } );
 
 // create meta upon user registration
-add_action( 'user_register', function( int $user_id ) {
-	update_user_meta( $user_id, 'kgr-userlog-act', 0 );
+add_action( 'user_register', function( int $user_id ): void {
+	update_user_meta( $user_id, 'kgr-user-log-act', 0 );
 } );

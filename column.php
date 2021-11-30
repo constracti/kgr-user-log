@@ -4,28 +4,28 @@ if ( !defined( 'ABSPATH' ) )
 	exit;
 
 add_filter( 'manage_users_columns', function( array $columns ): array {
-	$columns['kgr-userlog-reg'] = esc_html__( 'Registration', 'kgr-userlog' );
-	$columns['kgr-userlog-act'] = esc_html__( 'Action', 'kgr-userlog' );
+	$columns['kgr-user-log-reg'] = esc_html__( 'Registration', 'kgr-user-log' );
+	$columns['kgr-user-log-act'] = esc_html__( 'Action', 'kgr-user-log' );
 	return $columns;
 } );
 
 add_action( 'manage_users_custom_column', function( string $output, string $column_name, int $user_id ): string {
 	switch ( $column_name ) {
-		case 'kgr-userlog-reg':
-			$user = get_user_by( 'ID', $user_id );
+		case 'kgr-user-log-reg':
+			$user = get_user_by( 'id', $user_id );
 			$dt = DateTime::createFromFormat( 'Y-m-d H:i:s', $user->user_registered );
 			$dt = $dt->getTimestamp();
 			return $output . sprintf( '%s %s',
 				wp_date( get_option( 'date_format' ), $dt ),
 				wp_date( get_option( 'time_format' ), $dt ),
 			) . "\n";
-		case 'kgr-userlog-act':
-			$meta = intval( get_user_meta( $user_id, 'kgr-userlog-act', TRUE ) );
+		case 'kgr-user-log-act':
+			$meta = intval( get_user_meta( $user_id, 'kgr-user-log-act', TRUE ) );
 			if ( $meta === 0 )
-				return $output . esc_html__( 'never', 'kgr-userlog' ) . "\n";
+				return $output . esc_html__( 'never', 'kgr-user-log' ) . "\n";
 			return $output .= sprintf( '%s %s',
 				esc_html( human_time_diff( $meta ), $_SERVER['REQUEST_TIME'] ),
-				esc_html__( 'ago', 'kgr-userlog' )
+				esc_html__( 'ago', 'kgr-user-log' )
 			) . "\n";
 		default:
 			return $output;
@@ -35,12 +35,12 @@ add_action( 'manage_users_custom_column', function( string $output, string $colu
 add_action( 'admin_enqueue_scripts', function( string $hook_suffix ): void {
 	if ( $hook_suffix !== 'users.php' )
 		return;
-	wp_enqueue_style( 'kgr-userlog-column', KGR_USERLOG_URL . 'column.css', [], kgr_userlog_version() );
+	wp_enqueue_style( 'kgr-user-log-column', KGR_USER_LOG_URL . 'column.css', [], kgr_user_log_version() );
 } );
 
 add_filter( 'manage_users_sortable_columns', function( array $columns ): array {
-	$columns['kgr-userlog-reg'] = [ 'kgr-userlog-reg', TRUE ];
-	$columns['kgr-userlog-act'] = [ 'kgr-userlog-act', TRUE ];
+	$columns['kgr-user-log-reg'] = [ 'kgr-user-log-reg', TRUE ];
+	$columns['kgr-user-log-act'] = [ 'kgr-user-log-act', TRUE ];
 	return $columns;
 } );
 
@@ -49,11 +49,11 @@ add_action( 'pre_get_users', function( WP_User_Query $query ): void {
 		return;
 	$orderby = $query->get( 'orderby' );
 	switch ( $orderby ) {
-		case 'kgr-userlog-reg':
+		case 'kgr-user-log-reg':
 			$query->set( 'orderby', 'user_registered' );
 			break;
-		case 'kgr-userlog-act':
-			$query->set( 'meta_key', 'kgr-userlog-act' );
+		case 'kgr-user-log-act':
+			$query->set( 'meta_key', 'kgr-user-log-act' );
 			$query->set( 'orderby', 'meta_value_num' );
 			break;
 	}
