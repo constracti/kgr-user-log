@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: KGR User Log\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-09 13:48+0000\n"
-"PO-Revision-Date: 2021-11-30 20:24+0000\n"
+"PO-Revision-Date: 2021-12-01 19:38+0000\n"
 "Last-Translator: admin <constracti@gmail.com>\n"
 "Language-Team: Greek\n"
 "Language: el\n"
@@ -32,6 +32,10 @@ msgid ""
 msgstr ""
 "Εμφανίζει την ώρα εγγραφής και την ώρα τελευταίας ενέργειας σε δύο στήλες "
 "του πίνακα χρηστών."
+
+#. Author URI of the plugin
+msgid "https://github.com/constracti"
+msgstr "https://github.com/constracti"
 
 #. URI of the plugin
 msgid "https://github.com/constracti/kgr-user-log"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-30 20:23+0000\n"
+"POT-Creation-Date: 2021-12-01 19:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -30,6 +30,10 @@ msgstr ""
 msgid ""
 "Displays the registration time and the last active time in two custom "
 "columns in the users table."
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://github.com/constracti"
 msgstr ""
 
 #. URI of the plugin
