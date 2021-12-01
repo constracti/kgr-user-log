@@ -4,11 +4,15 @@
  * Plugin Name: KGR User Log
  * Plugin URI: https://github.com/constracti/kgr-user-log
  * Description: Displays the registration time and the last active time in two custom columns in the users table.
- * Author: constracti
  * Version: 1.6.1
- * License: GPL2
+ * Requires at least: 5.3.0
+ * Requires PHP: 7.0
+ * Author: constracti
+ * Author URI: https://github.com/constracti
+ * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: kgr-user-log
+ * Domain Path: /languages
  */
 
 if ( !defined( 'ABSPATH' ) )
