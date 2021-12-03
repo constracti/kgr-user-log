@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: KGR User Log\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-09 13:48+0000\n"
-"PO-Revision-Date: 2021-12-01 19:38+0000\n"
+"PO-Revision-Date: 2021-12-03 11:39+0000\n"
 "Last-Translator: admin <constracti@gmail.com>\n"
 "Language-Team: Greek\n"
 "Language: el\n"
@@ -43,7 +43,7 @@ msgstr "https://github.com/constracti/kgr-user-log"
 
 #. Name of the plugin
 msgid "KGR User Log"
-msgstr "KGR User Log"
+msgstr "KGR Καταγραφές Χρηστών"
 
 #: column.php:25
 msgid "never"
