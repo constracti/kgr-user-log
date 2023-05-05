@@ -13,7 +13,7 @@ add_action( 'manage_users_custom_column', function( string $output, string $colu
 	switch ( $column_name ) {
 		case 'kgr-user-log-reg':
 			$user = get_user_by( 'id', $user_id );
-			$dt = DateTime::createFromFormat( 'Y-m-d H:i:s', $user->user_registered );
+			$dt = DateTime::createFromFormat( 'Y-m-d H:i:s', $user->user_registered, new DateTimeZone( 'UTC' ) );
 			$dt = $dt->getTimestamp();
 			return $output . sprintf( '%s %s',
 				wp_date( get_option( 'date_format' ), $dt ),
